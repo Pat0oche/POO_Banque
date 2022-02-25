@@ -116,15 +116,11 @@ class Compte {
         return $this;
     }
 
-    public function virement(Titulaire $comptes, Titulaire $compteADebiter, Titulaire $compteACrediter, $montant) {
-// compte cible et montant
-        if(count($this->_titulaire->$comptes) >= 2) {
-            $this->_titulaire->$compteADebiter -= $montant;
-            $this->_titulaire->$compteACrediter += $montant;
-            return $this;
+    public function virement(Compte $compteCible, float $montant) {
+        $this->debiter($montant);
+        $compteCible->crediter($montant);
+        echo "Votre virement de $montant € a été effectué <br>Solde de $this->_libelle : $this->_solde €";
+        return $this;
 
-        } else {
-            return false;
-        }
     }
 }
