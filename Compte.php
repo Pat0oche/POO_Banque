@@ -87,7 +87,7 @@ class Compte {
 
     public function __toString()
     {
-        return $this->_libelle." (".$this->_soldeInitial." ".$this->_devise." Titulaire : ".$this->_titulaire;
+        return $this->_libelle." (".$this->_solde." ".$this->_devise." Titulaire : ".$this->_titulaire;
     }
 
     /**
@@ -111,7 +111,7 @@ class Compte {
     }
 
     public function debiter($montant) {
-        $this->_solde += $montant;
+        $this->_solde -= $montant;
 
         return $this;
     }
@@ -120,7 +120,5 @@ class Compte {
         $this->debiter($montant);
         $compteCible->crediter($montant);
         echo "Votre virement de $montant € a été effectué <br>Solde de $this->_libelle : $this->_solde €";
-        return $this;
-
     }
 }
